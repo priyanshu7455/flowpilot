@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #12151A;
+  color: #F4F1EA;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #FFB020;
+  color: #12151A;
+}
+
+/* Visible, deliberate focus ring everywhere - never suppressed */
+:focus-visible {
+  outline: 2px solid #FFB020;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Thin, quiet scrollbar in the same tonal family as the page */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #12151A;
+}
+::-webkit-scrollbar-thumb {
+  background: #2B323C;
+  border-radius: 6px;
+  border: 2px solid #12151A;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3A4250;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scroll-reveal utility, driven by IntersectionObserver adding .is-visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.instrument-ticks {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(244, 241, 234, 0.14) 0,
+    rgba(244, 241, 234, 0.14) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
